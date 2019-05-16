@@ -1,0 +1,210 @@
+$theme-colors: (
+  "info": #36a45c
+);
+
+$gray: #cdd5dc;
+$info: #36a45c;
+$green: #66d68c;
+
+@import '../node_modules/bootstrap/scss/bootstrap';
+
+@include media-breakpoint-up(lg) {
+  header {
+    height: 25rem;
+    font-size: 1.5rem;
+    text-align: center;
+    background-image: url('assets/header_img.jpg');
+    background-position: center;
+    background-repeat: repeat-x;
+    padding: 11rem 0;
+    > a {
+      font-size: 3rem;
+      font-family: "Courier New", Courier, monospace;
+      font-weight: bold;
+      color: $dark;
+      &:hover {
+        color: $dark;
+      }
+    }
+  }
+  nav.navbar {
+    position: relative;
+  }
+  .search, .tagged, .view, .write {
+    padding-top: 1rem;
+  }
+}
+
+@include media-breakpoint-down(md) {
+  header {
+    height: 0;
+    > a {
+      height: 0;
+      font-size: 0;
+    }
+  }
+  nav.navbar {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 1030;
+  }
+  .search, .tagged, .view, .write {
+    padding-top: 4rem;
+  }
+}
+
+.fixed-top {
+  position: fixed !important;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1030
+}
+
+.menus, .tags {
+  > button {
+    margin-right: .1rem;
+    font-size: 1rem;
+    line-height: 1rem;
+  }
+  .material-icons {
+    font-size: 1rem;
+    line-height: 1rem;
+  }
+}
+
+@include media-breakpoint-up(xl) {
+    .list {
+        padding: 0 10vw;
+    }
+    .view {
+        padding: 0 20vw;
+    }
+    .card-columns {
+        column-count: 3;
+    }
+
+}
+@include media-breakpoint-only(lg) {
+    .list {
+        padding: 0 5vw;
+    }
+    .view {
+        padding: 0 10vw;
+    }
+    .card-columns {
+        column-count: 3;
+    }
+
+}
+@include media-breakpoint-only(md) {
+    .list {
+        padding: 0 5vw;
+    }
+    .view {
+        padding: 0 5vw;
+    }
+    .card-columns {
+        column-count: 2
+    }
+    
+}
+@include media-breakpoint-down(sm) {
+    .list {
+        padding: 0 5vw;
+    }
+    .view {
+        padding: 0 5vw;
+    }
+    .card-columns {
+        column-count: 1
+    }
+
+    nav.navbar {
+       .form-inline {
+           input {
+               width: 50%;
+               margin-right: .5rem;
+           }
+       }
+    }
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+.tagged > p, .search > p {
+  text-align: center;
+  margin: .5rem 0 0 0;
+  font-weight: bold;
+  font-size: 1.4rem;
+}
+
+button {
+  &.show {
+    display: inline-block;
+    margin-right: .2rem;
+  }
+  &.hide {
+    display: none;
+  }
+}
+
+
+.card {
+  margin-top: 0.75rem;
+  border: 0;
+  box-shadow: 0 0rem 0.3rem rgba(150, 150, 150, 0.5);
+
+  .card-header {
+    background-color: $white;
+    border-bottom: 0;
+    box-shadow: 0 0.3rem 0.15rem -0.15rem rgba(150, 150, 150, 0.1);
+    color: $info;
+    font-size: 1.3rem;
+    font-weight: bold;
+    a {
+      color: $info;
+    }
+    a:hover {
+      color: $green;
+    }
+ }
+  .card-img {
+    border-radius: 0;
+  }
+  .card-text {
+      > code, li > code {
+        background-color: $gray;
+        color: $info;
+        border-radius: .2rem;
+        padding: .15rem .3rem;
+        font-size: .85rem;
+        text-indent: 0;
+      }
+      pre {
+        background-color: $info;
+        border-radius: .2rem;
+        padding: .2rem .5rem;
+        margin: .3rem 0;
+      
+        > code {
+          @extend .bg-transparent;
+          color: $white;
+          font-size: .85rem;
+          word-break: break-word;
+          white-space: pre-wrap;
+          font-family: "Courier New", Courier, monospace;
+        }
+      }
+  }
+  .card-footer {
+    font-style: italic;
+    border-top: 0;
+  }
+}
+
+
