@@ -14,13 +14,13 @@ export default {
   components: {
     'list': List
   },
-  data: function () {
+  data () {
     return {
       url: 'posts',
       posts: []
     }
   },
-  created: function () {
+  created () {
     this.getSearch(this.$route)
     this.fetchData()
   },
