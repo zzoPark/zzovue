@@ -9,13 +9,13 @@ npm install
 ### Set environment variables
 in .env file
 ```javascript
-BACKEND_HOST=your_backend_host  // 127.0.0.1, localhost, yourhostname.com
-BACKEND_PORT=your_backend_port
+VUE_APP_BACKEND_HOST=your_backend_host  // 127.0.0.1, localhost, yourhostname.com
+VUE_APP_BACKEND_PORT=your_backend_port
 ```
 in .env.production file
 ```javascript
-BACKEND_HOST=your_production_backend_host
-BACKEND_PORT=your_production_backend_port
+VUE_APP_BACKEND_HOST=your_production_backend_host
+VUE_APP_BACKEND_PORT=your_production_backend_port
 ```
 
 ### Compiles and hot-reloads for development
