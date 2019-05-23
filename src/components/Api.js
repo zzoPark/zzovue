@@ -1,9 +1,10 @@
 import axios from 'axios'
 
-const basehost = (process.env.NODE_ENV === 'development') ? 'localhost' : 'zzovlog.com'
+const host = process.env.BACKEND_HOST
+const port = process.env.BACKEND_PORT
 
 export default () => {
   return axios.create({
-    baseURL: 'http://' + basehost + ':8000/'
+    baseURL: 'http://' + host + ':' + port + '/'
   })
 }
