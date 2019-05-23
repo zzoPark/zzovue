@@ -56,9 +56,10 @@ export default {
         vm.menus = response.data.results
       })
       .catch(function (error) {
-        console.log(error)
+        console.error(error)
       })
       vm.isLogin = vm.$cookies.isKey('token')
+      console.log(vm.isLogin)
     },
     parseUrl (name) {
       return name.toString().replace('/', '')

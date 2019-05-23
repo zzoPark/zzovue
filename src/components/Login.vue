@@ -19,14 +19,14 @@ import api from './Api.js'
 
 export default {
   name: 'Login',
-  data: function () {
-    return {
+  data () { 
+    return { 
       username: '',
       password: ''
     }
   },
   methods: {
-    onSubmit: function () {
+    onSubmit () {
       var vm = this
 
       api().post('login', {
@@ -34,12 +34,11 @@ export default {
         password: vm.password
       })
       .then(function (response) {
-        console.log(response.data.token)
         vm.$cookies.set('token', response.data.token)
-        vm.$router.replace('/')
+        vm.$router.push('/')
       })
       .catch(function (error) {
-        console.log(error)
+        console.error(error)
       })
     }
   }

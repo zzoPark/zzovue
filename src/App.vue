@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <zzo-header></zzo-header>
-    <router-view name="nav"></router-view>
+    <router-view name="nav" :key="$route.fullPath"></router-view>
     <router-view></router-view>
     <zzo-footer></zzo-footer>
   </div>

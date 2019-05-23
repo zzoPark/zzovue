@@ -34,7 +34,7 @@ export default new Router({
     route ('/tags/:name', 'Tagged', Tagged),
     route ('/tags/:name/posts/:id', 'TaggedView', View),
     route ('/posts', 'Posts', Posts),
-    route ('posts/:id', 'PostView', View),
+    route ('/posts/:id', 'PostView', View),
     route ('/write', 'PostCreate', Write),
     route ('/posts/:id/write', 'PostUpdate', Write),
     route ('/menus', 'EditMenu', EditMenu),
