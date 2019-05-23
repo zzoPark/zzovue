@@ -45,7 +45,7 @@ export default {
         vm.posts = response.data.results
       })
       .catch(function (error) {
-        console.log(error)
+        console.error(error)
       })
     }
   }
