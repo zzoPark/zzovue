@@ -33,7 +33,6 @@ export default {
   methods: {
     getSearch (to) {
       var search = to.query.search
-      console.log(search)
       if (search !== undefined && search !== null) {
         this.url += `?search=${search}`
       }
