@@ -4,7 +4,6 @@
     <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
     <b-navbar-brand to="/">zzovlog</b-navbar-brand>
     <b-collapse is-nav id="nav_collapse">
-
       <b-navbar-nav>
         <b-nav-item v-for="menu in menus" :key="menu.id"
                     :to="'/tags/'+parseUrl(menu.tag)+'/'">
@@ -30,36 +29,30 @@
 </template>
 
 <script>
-import api from './Api.js'
+import bus from '@/services/bus.js'
+import api from '@/services/api.js'
 
 export default {
   name: 'Nav',
   data () {
     return {
-      menus: [],
       isLogin: false,
+      menus: [],
       headerHeight: 0
     }
   },
   created () {
     this.fetchData()
-  },
-  beforeRouteUpdate (to, from, next) {
-    this.fetchData()
-    next()
+    bus.$on('login', (isLogin) => { this.isLogin = isLogin })
+    bus.$on('menus', (menus) => { this.menus = menus })
   },
   methods: {
     fetchData () {
-      var vm = this
-      api().get('menus')
-      .then(function (response) {
-        vm.menus = response.data.results
-      })
-      .catch(function (error) {
-        console.error(error)
-      })
-      vm.isLogin = vm.$cookies.isKey('token')
-      console.log(vm.isLogin)
+      this.isLogin = this.$cookies.isKey('token')
+      api.get('menus')
+        .then((response) => {
+          this.menus = response.data.results
+        })
     },
     parseUrl (name) {
       return name.toString().replace('/', '')

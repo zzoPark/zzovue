@@ -7,7 +7,7 @@
 
 <script>
 import List from './List.vue'
-import api from './Api.js'
+import api from '@/services/api.js'
 
 export default {
   name: 'Posts',
@@ -28,15 +28,10 @@ export default {
   },
   methods: {
     fetchData (tagname) {
-      var vm = this
-      api().get('tagged/' + tagname)
-      .then(function (response) {
-        console.log(response.data)
-        vm.posts = response.data.results
-      })
-      .catch(function (error) {
-        console.log(error)
-      })
+      api.get('tagged/' + tagname)
+        .then((response) => {
+          this.posts = response.data.results
+        })
     }
   }
 }

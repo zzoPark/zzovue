@@ -7,7 +7,7 @@
     </b-form-group>
     <b-form-group label="Menus (Selected)">
       <b-button-group>
-        <b-button v-for="it in selected" size="lg" variant="warning">{{ it }}</b-button>
+        <b-button v-for="it in selected" :key="it" size="lg" variant="warning">{{ it }}</b-button>
       </b-button-group>
     </b-form-group>
 
@@ -17,78 +17,52 @@
 </template>
 
 <script>
-import api from './Api.js'
+import api from '@/services/api.js'
+import bus from '@/services/bus.js'
 
 export default {
   name: 'EditMenu',
   data () {
     return {
-      selected: ['Linux'],
-      options: [
-        { text: 'Linux', value: 'Linux' },
-        { text: 'Docker', value: 'Docker' }
-      ]
+      selected: [],
+      options: []
     }
   },
   created () {
     this.fetchData()
   },
-  beforeRouteUpdate (to, from, next) {
-    this.fetchData()
-    next()
-  },
   methods: {
     fetchData () {
-      this.selected = []
-      this.options = []
       this.getMenus()
       this.getTags()
     },
     getMenus () {
-      var vm = this
-      api().get('menus')
-      .then(function (response) {
-        response.data.results.forEach(function (it) {
-          vm.selected.push(it.tag)
+      api.get('menus')
+        .then((response) => {
+          response.data.results.forEach((it) => {
+            this.selected.push(it.tag)
+          })
         })
-      })
-      .catch(function (error) {
-        console.log(error)
-      })
     },
     getTags () {
-      var vm = this
-      api().get('tags')
-      .then(function (response) {
-        response.data.results.forEach(function (it) {
-          vm.options.push({ text: it.name, value: it.name })
+      api.get('tags')
+        .then((response) => {
+          response.data.results.forEach((it) => {
+            this.options.push({ text: it.name, value: it.name })
+          })
         })
-      })
-      .catch(function (error) {
-        console.log(error)
-      })
     },
     onSubmit () {
-      var vm = this
-      var token = this.$cookies.get('token')
-      var menus = []
-      var index = 0
-      vm.selected.forEach(function (it) {
+      let menus = []
+      let index = 0
+      this.selected.forEach((it) => {
         menus.push({ tag: it, order: index })
         index += 1
       })
-      api().post('menus/', menus, {
-        headers: {
-          Authorization: `Token ${token}`
-        }
-      })
-      .then(function (response) {
-        console.log(response.data)
-        vm.$router.push('/')
-      })
-      .catch(function (error) {
-        console.log(error)
-      })
+      api.post('menus/', menus)
+        .then(() => {
+          bus.$emit('menus', menus)
+        })
     },
     onReset () {
       this.fetchData()

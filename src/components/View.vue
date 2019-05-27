@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import api from './Api.js'
+import api from '@/services/api.js'
 
 export default {
   name: 'PostView',
@@ -42,14 +42,10 @@ export default {
   },
   methods: {
     fetchData (postId) {
-      var vm = this
-      api().get(`posts/${postId}`)
-      .then(function (response) {
-        vm.post = response.data
-      })
-      .catch(function (error) {
-        console.error(error)
-      })
+      api.get(`posts/${postId}`)
+        .then((response) => {
+          this.post = response.data
+        })
     }
   }
 }

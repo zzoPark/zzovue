@@ -15,7 +15,8 @@
 </template>
 
 <script>
-import api from './Api.js'
+import api from '@/services/api.js'
+import bus from '@/services/bus.js'
 
 export default {
   name: 'Login',
@@ -27,18 +28,14 @@ export default {
   },
   methods: {
     onSubmit () {
-      var vm = this
-
-      api().post('login', {
-        username: vm.username,
-        password: vm.password
+      api.post('login', {
+        username: this.username,
+        password: this.password
       })
-      .then(function (response) {
-        vm.$cookies.set('token', response.data.token)
-        vm.$router.push('/')
-      })
-      .catch(function (error) {
-        console.error(error)
+      .then((response) => {
+        this.$cookies.set('token', response.data.token)
+        bus.$emit('login', true)
+        this.$router.push('/')
       })
     }
   }

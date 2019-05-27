@@ -7,7 +7,7 @@
 
 <script>
 import List from './List.vue'
-import api from './Api.js'
+import api from '@/services/api.js'
 
 export default {
   name: 'Posts',
@@ -39,7 +39,7 @@ export default {
     },
     fetchData () {
       var vm = this
-      api().get(vm.url)
+      api.get(vm.url)
       .then(function (response) {
         vm.posts = response.data.results
       })

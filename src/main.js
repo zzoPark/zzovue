@@ -9,7 +9,7 @@ Vue.use(BootstrapVue)
 Vue.use(VueCookies)
 VueCookies.config('7d')
 
-Vue.config.productionTip = false
+Vue.config.productionTip = process.env.NODE_ENV === 'production'
 
 Vue.directive('scroll', {
   inserted: function (el, binding) {
