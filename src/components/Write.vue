@@ -8,7 +8,7 @@
       <b-form-textarea id="contents" v-model="post.contents"
                        placeholder="Write down contents"></b-form-textarea>
     </b-form-group>
-    <b-form-group horizontal :label-cols="1" breakpoint="md"
+    <b-form-group :label-cols="1" breakpoint="md"
                   label="Tags:" label-for="tags">
       <b-form-input id="tags" v-model="post.tags"></b-form-input>
     </b-form-group>
@@ -42,48 +42,30 @@ export default {
   },
   created () {
     this.getAllTags()
-    this.fetchData()
   },
   methods: {
     getAllTags () {
-      var vm = this
-      api().get('tags')
-      .then(function (response) {
-        vm.tags = response.data.results
-        vm.tags.forEach(function (tag) {
-          vm.visible[tag.name] = 'show'
+      api.get('tags')
+        .then((response) => {
+          this.tags = response.data.results
+          this.tags.forEach((tag) => {
+            this.visible[tag.name] = 'show'
+          })
         })
-      })
-      .catch(function (error) {
-        console.log(error)
-      })
-    },
-    fetchData () {
     },
     onSubmit () {
-      var vm = this
-      var token = this.$cookies.get('token')
-      api().post('posts/', vm.post, {
-        headers: {
-          Authorization: `Token ${token}`
-        }
-      })
-      .then(function (response) {
-        console.log(response.data)
-        var postId = response.data.id
-        vm.$router.push(`/posts/${postId}`)
-      })
-      .catch(function (error) {
-        console.log(error)
-      })
+      api.post('posts/', this.post)
+        .then((response) => {
+          let postId = response.data.id
+          this.$router.push(`/posts/${postId}`)
+        })
     },
     onReset () {
       this.post.title = ''
       this.post.contents = ''
       this.post.tags = ''
-      var vm = this
-      this.tags.forEach(function (tag) {
-        vm.visible[tag.name] = 'show'
+      this.tags.forEach((tag) => {
+        this.visible[tag.name] = 'show'
       })
     },
     select (tagname) {
