@@ -9,7 +9,8 @@ const api = axios.create({
 })
 
 api.interceptors.request.use((config) => {
-  if (config.method == 'post') {
+  if (config.method === 'post' && typeof $cookies !== "undefined") {
+    // eslint-disable-next-line
     let token = $cookies.get('token')
     config.headers.common['Authorization'] = `Token ${token}`
   }
