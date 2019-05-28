@@ -38,14 +38,10 @@ export default {
       }
     },
     fetchData () {
-      var vm = this
-      api.get(vm.url)
-      .then(function (response) {
-        vm.posts = response.data.results
-      })
-      .catch(function (error) {
-        console.error(error)
-      })
+      api.get(this.url)
+        .then((response) => {
+          this.posts = response.data.results
+        })
     }
   }
 }
