@@ -1,6 +1,14 @@
 # zzovue
 zzovlog's frontend side
 
+## 개발환경
+* [Vue CLI](https://cli.vuejs.org/)를 이용해 프로젝트 생성
+* .vue 확장자의 [싱글 파일 컴포넌트](https://kr.vuejs.org/v2/guide/single-file-components.html) 구조로 개발
+* HTTP server로 [express](https://expressjs.com/ko/) 이용
+* express에 미들웨어로 [connect-history-api-fallback](https://github.com/bripkens/connect-history-api-fallback) 추가
+  * HTML5 History Mode가 동작하도록 해주는 SPA(Single Page Application)을 위한 미들웨어
+  * [HTML5 History Mode | Vue Router](https://router.vuejs.org/guide/essentials/history-mode.html#example-server-configurations)
+
 ## Project setup
 ```
 npm install
