@@ -8,7 +8,7 @@ zzovlog's frontend side
   * 원래 NGINX를 이용하려고 했는데 node image 위에 nginx 설치하려고 하니까 하드 용량 초과로 강종됨(프리티어라 용량이 얼마 안됨)
   * 어차피 node image 쓸 바에야 서버도 node로 가는게 좋을 것 같아서 가장 대표적인 express를 선택
   * express에 미들웨어로 [connect-history-api-fallback](https://github.com/bripkens/connect-history-api-fallback) 추가
-  * [HTML5 History Mode](https://router.vuejs.org/guide/essentials/history-mode.html#example-server-configurations)가 동작하도록 해주는 SPA(Single Page Application)을 위한 미들웨어
+    * [HTML5 History Mode](https://router.vuejs.org/guide/essentials/history-mode.html#example-server-configurations)가 동작하도록 해주는 SPA(Single Page Application)을 위한 미들웨어
 
 ## Project setup
 ```
