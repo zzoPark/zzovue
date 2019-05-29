@@ -8,6 +8,7 @@
 <script>
 import List from './List.vue'
 import api from '@/services/api.js'
+import bus from '@/services/bus.js'
 
 export default {
   name: 'Posts',
@@ -41,6 +42,7 @@ export default {
       api.get(this.url)
         .then((response) => {
           this.posts = response.data.results
+          bus.$emit('posts', this.posts)
         })
     }
   }

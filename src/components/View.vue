@@ -25,27 +25,22 @@ export default {
   name: 'PostView',
   data () {
     return {
-      post: {
-        title: 'title',
-        contents: 'contents',
-        tags: [],
-        update_date: '2019-01-01'
-      }
+      post: {}
     }
   },
   created () {
     this.fetchData(this.$route.params.id)
   },
-  beforeRouteUpdate (to, from, next) {
-    this.fetchData(to.params.id)
-    next()
-  },
   methods: {
     fetchData (postId) {
-      api.get(`posts/${postId}`)
-        .then((response) => {
-          this.post = response.data
-        })
+      if (typeof this.$route.params.post === 'undefined') {
+        api.get(`posts/${postId}`)
+          .then((response) => {
+            this.post = response.data
+          })
+      } else {
+        this.post = this.$route.params.post
+      }
     }
   }
 }

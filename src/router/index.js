@@ -13,10 +13,11 @@ import NotFound from '@/components/NotFound'
 
 Vue.use(Router)
 
-let route = (path, name, component) => {
+let route = (path, name, component, props=false) => {
   return {
     path,
     name,
+    props,
     components: {
       nav: Nav,
       default: component
@@ -34,7 +35,7 @@ export default new Router({
     route ('/tags/:name', 'Tagged', Tagged),
     route ('/tags/:name/posts/:id', 'TaggedView', View),
     route ('/posts', 'Posts', Posts),
-    route ('/posts/:id', 'PostView', View),
+    route ('/posts/:id', 'PostView', View, true),
     route ('/write', 'PostCreate', Write),
     route ('/posts/:id/write', 'PostUpdate', Write),
     route ('/menus', 'EditMenu', EditMenu),
