@@ -4,8 +4,7 @@ RUN npm install -g http-server
 
 WORKDIR /zzovue
 COPY . .
-
-RUN npm install
-RUN npm run build
+RUN chmod +x docker-entrypoint.sh
+ENTRYPOINT ["/zzovue/docker-entrypoint.sh"]
 
 CMD ["http-server", "dist"]
